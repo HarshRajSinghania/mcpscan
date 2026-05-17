@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcpscan"
+version = "1.0.0"
+description = "Security scanner for MCP (Model Context Protocol) servers. Detects prompt injection in tool descriptions, unsafe authentication, path traversal, and over-broad permissions. Zero dependencies."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Linda Oraegbunam" }]
+keywords = [
+    "mcp", "model-context-protocol", "security", "red-team",
+    "ai-security", "llm", "anthropic", "claude", "prompt-injection",
+    "tool-poisoning", "owasp", "agentic-ai", "scanner",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "black>=24.0.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+mcpscan = "mcpscan.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/obielin/mcpscan"
+"Bug Tracker" = "https://github.com/obielin/mcpscan/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]
